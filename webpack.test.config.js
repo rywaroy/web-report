@@ -3,10 +3,10 @@ const path = require('path');
 module.exports = {
   mode: 'production',
   devtool: '#source-map',
-  entry: './src/index.js',
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'index.js'
   },
   module: {
     rules: [

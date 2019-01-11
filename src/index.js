@@ -30,7 +30,6 @@ function webReport(opts) {
   // 错误监控
   if (option.isErrorReport) {
     window.onerror = (msg, url, line, col, error) => {
-
       // 异步
       setTimeout(() => {
         // 过滤连续发送的报错
