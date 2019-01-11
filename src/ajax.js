@@ -12,7 +12,7 @@ export default function Ajax(url, data) {
   });
   params = params.replace(/&$/, '');
 
-  // xhr.open('POST', url, true);
-  // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  // xhr.send(data);
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send(params);
 }

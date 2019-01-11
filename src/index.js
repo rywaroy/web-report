@@ -40,13 +40,21 @@ function webReport(opts) {
 
         flag = `${line}${col}`;
         if (Math.random() * 100 > option.pv) {
-          // ajax('www.abc.com', data);
+          ajax('http://localhost:7001/errors', {
+            project: option.project,
+            msg,
+            url,
+            line,
+            col,
+          });
         }
-      }, 0)
+      }, 0);
 
     }
   }
 }
 
-webReport();
+webReport({
+  project: 'resource',
+});
 export default webReport;
