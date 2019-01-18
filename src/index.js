@@ -1,5 +1,6 @@
 import timing from './timing';
 import ajax from './ajax';
+import browseType from './browseType';
 
 function webReport(opts) {
 
@@ -39,12 +40,15 @@ function webReport(opts) {
 
         flag = `${line}${col}`;
         if (Math.random() * 100 > option.pv) {
+          const sys = browseType();
           ajax('http://localhost:7001/errors', {
             project: option.project,
             msg,
             url,
             line,
             col,
+            browser: sys.browser,
+            version: sys.ver,
           });
         }
       }, 0);
