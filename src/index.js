@@ -9,6 +9,7 @@ function webReport(opts) {
     isErrorReport: true,
     isPerformanceReport: true,
     pv: 0,
+    errorReportUrl: 'http://localhost:7001/errors',
   }, opts);
   
   // 性能监控
@@ -41,7 +42,7 @@ function webReport(opts) {
         flag = `${line}${col}`;
         if (Math.random() * 100 > option.pv) {
           const sys = browseType();
-          ajax('http://localhost:7001/errors', {
+          ajax(option.errorReportUrl, {
             project: option.project,
             msg,
             url,
