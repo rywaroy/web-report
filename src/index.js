@@ -10,21 +10,30 @@ function webReport(opts) {
     isPerformanceReport: true,
     pv: 0,
     errorReportUrl: 'http://localhost:7001/errors',
+    performanceReportUrl: 'http://localhost:7001/performance'
   }, opts);
   
   // 性能监控
   if (option.isPerformanceReport) {
-    const {
-      lookupDomainTime, // DNS 耗时
-      connectTime, // TCP链接耗时
-      requestTime, // request请求耗时
-      domReadyTime, // 解析dom耗时
-      readyStart, // 准备新页面所花费的时间
-      scriptLoadTime, // 脚本加载时间
-      pageFullLoadTime, // 页面完全加载时间
-    } = timing.getTimes();
+    // const {
+    //   lookupDomainTime, // DNS 耗时
+    //   connectTime, // TCP链接耗时
+    //   requestTime, // request请求耗时
+    //   domReadyTime, // 解析dom耗时
+    //   readyStart, // 准备新页面所花费的时间
+    //   scriptLoadTime, // 脚本加载时间
+    //   pageFullLoadTime, // 页面完全加载时间
+    // } = timing.getTimes();
 
-    // ajax('www.abc.com', data);
+    const data = timing.getTimes();
+    const sys = browseType();
+
+    ajax(option.performanceReportUrl, {
+      ...data,
+      project,
+      browser: sys.browser,
+      version: sys.ver,
+    });
   }
 
   let flag = '';
@@ -58,7 +67,7 @@ function webReport(opts) {
   }
 }
 
-webReport({
-  project: 'resource',
-});
+// webReport({
+//   project: 'resource',
+// });
 export default webReport;
