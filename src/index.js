@@ -2,7 +2,7 @@ import timing from './timing';
 import ajax from './ajax';
 import browseType from './browseType';
 
-function webReport(opts) {
+export default function webReport(opts) {
 
   // 合并配置项
   const option = Object.assign({
@@ -15,22 +15,28 @@ function webReport(opts) {
   
   // 性能监控
   if (option.isPerformanceReport) {
-    // const {
-    //   lookupDomainTime, // DNS 耗时
-    //   connectTime, // TCP链接耗时
-    //   requestTime, // request请求耗时
-    //   domReadyTime, // 解析dom耗时
-    //   readyStart, // 准备新页面所花费的时间
-    //   scriptLoadTime, // 脚本加载时间
-    //   pageFullLoadTime, // 页面完全加载时间
-    // } = timing.getTimes();
+    const {
+      lookupDomainTime, // DNS 耗时
+      connectTime, // TCP链接耗时
+      requestTime, // request请求耗时
+      domReadyTime, // 解析dom耗时
+      readyStart, // 准备新页面所花费的时间
+      scriptLoadTime, // 脚本加载时间
+      pageFullLoadTime, // 页面完全加载时间
+    } = timing.getTimes();
 
-    const data = timing.getTimes();
+    // const data = timing.getTimes();
     const sys = browseType();
 
     ajax(option.performanceReportUrl, {
-      ...data,
-      project,
+      lookupDomainTime,
+      connectTime,
+      requestTime,
+      domReadyTime,
+      readyStart,
+      scriptLoadTime,
+      pageFullLoadTime,
+      project: option.project,
       browser: sys.browser,
       version: sys.ver,
     });
@@ -66,8 +72,3 @@ function webReport(opts) {
     }
   }
 }
-
-// webReport({
-//   project: 'resource',
-// });
-export default webReport;

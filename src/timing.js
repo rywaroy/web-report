@@ -45,20 +45,25 @@ export default {
       // Time consumed preparing the new page
       api.readyStart = timing.fetchStart - timing.navigationStart;
       // Time spent during redirection
+      // 重定向耗时
       api.redirectTime = timing.redirectEnd - timing.redirectStart;
       // AppCache
       api.appcacheTime = timing.domainLookupStart - timing.fetchStart;
       // Time spent unloading documents
       api.unloadEventTime = timing.unloadEventEnd - timing.unloadEventStart;
       // DNS query time
+      // DNS查询耗时
       api.lookupDomainTime = timing.domainLookupEnd - timing.domainLookupStart;
       // TCP connection time
+      // TCP链接耗时
       api.connectTime = timing.connectEnd - timing.connectStart;
       // Time spent during the request
+      // HTTP请求耗时
       api.requestTime = timing.responseEnd - timing.requestStart;
       // Request to completion of the DOM loading
       api.initDomTreeTime = timing.domInteractive - timing.responseEnd;
       // Load event time
+      // onload时间
       api.loadEventTime = timing.loadEventEnd - timing.loadEventStart;
       // Script loading time
       api.scriptLoadTime = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart;

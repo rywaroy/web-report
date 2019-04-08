@@ -1,6 +1,9 @@
-document.getElementById('button').addEventListener('click', function() {
-  console.log(a);
-});
-document.getElementById('button2').addEventListener('click', function() {
-  console.log(b);
-});
+import webReport from './dist/index';
+// const webReport = require('./dist/index');
+// import webReport from './src/index';
+
+setTimeout(() => {
+  webReport({
+    project: 'resource',
+  });
+}, 1000);
